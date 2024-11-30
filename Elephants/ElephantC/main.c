@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main(void) {
-    FILE *fprt = fopen("ElephantNum.txt", "r"); // No necesita ser estática
+    FILE *fprt = fopen("ElephantNum.txt", "r");
 
     if (fprt == NULL) {
         printf("Failure to open file\n");
@@ -35,6 +36,24 @@ int main(void) {
 
     printf("File size: %ld\n", filesize);
     printf("File contents:\n%s\n", str);
+
+    char *token = strtok(str," \t");
+    int *arr = malloc(sizeof(int) * filesize);
+
+    if (arr == NULL)
+    {
+        printf("Failure to allocate memory\n");
+        fclose(fprt);
+        return 1;
+    }
+
+
+
+    while (token != NULL)
+    {
+        int num = atoi(token);
+
+    }
 
     // Limpiar recursos
     free(str);
