@@ -65,7 +65,14 @@ int main(void) {
             }
             arr = temp;
         }
+        arr[count++] = atoi(token);
+        token = strtok(NULL, " \t");
 
+    }
+
+    printf("\n");
+    for (size_t i = 0; i < count-1; i++) {
+        printf("%d\n", arr[i]);
     }
 
     // Limpiar recursos
