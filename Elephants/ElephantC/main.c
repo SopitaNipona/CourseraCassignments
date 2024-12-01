@@ -37,6 +37,7 @@ int main(void) {
     printf("File size: %ld\n", filesize);
     printf("File contents:\n%s\n", str);
 
+    size_t sizearr = 10;
     char *token = strtok(str," \t");
     int *arr = malloc(sizeof(int) * filesize);
 
@@ -47,11 +48,23 @@ int main(void) {
         return 1;
     }
 
+    size_t count = 0;
 
 
     while (token != NULL)
     {
         int num = atoi(token);
+        if (count >= sizearr)
+        {
+            sizearr *= 2;
+            int *temp = realloc(arr, sizearr * sizeof(int));
+            if (temp == NULL) {
+                printf("Memory reallocation failed\n");
+                free(arr);
+                return 1;
+            }
+            arr = temp;
+        }
 
     }
 
