@@ -80,10 +80,10 @@ int main(void) {
 
     }
 
-    printf("\n");
+ /* printf("\n");
     for (size_t i = 0; i < count-1; i++) {
         printf("%d\n", arr[i]);
-    }
+    }*/
 
     float res = getAvg(arr, count-1);
 
