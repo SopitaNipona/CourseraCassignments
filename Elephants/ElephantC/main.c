@@ -2,96 +2,90 @@
 #include <stdlib.h>
 #include <string.h>
 
-float getAvg(int arr[], int n) {
+float getAvg(int arr[], int n) { //Takes array and the number of elements
     int sum = 0;
 
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++) { //adds the numbers of the whole array
         sum += arr[i];
     }
 
-    return (float)sum / n;
+    return (float)sum / n; //Returns the average
 }
 
 int main(void) {
-    FILE *fprt = fopen("ElephantNum.txt", "r");
+    FILE *filePointer = fopen("ElephantNum.txt", "r"); //Opens file in read mode
 
-    if (fprt == NULL) {
+    if (filePointer == NULL) {
         printf("Failure to open file\n");
-        return 1; // Salimos si no se abre el archivo
+        return 1; // Exits if file fails to open
     }
 
     //printf("File opened\n");
 
-    fseek(fprt, 0, SEEK_END);
-    long filesize = ftell(fprt); // Obtenemos el tamaño del archivo
-    rewind(fprt); // Regresamos al inicio del archivo
+    fseek(filePointer, 0, SEEK_END); //Points to the end of the file
+    long filesize = ftell(filePointer); // size of the file
+    rewind(filePointer); // return to the start of the file
 
     if (filesize <= 0) {
-        printf("Invalid file size: %ld\n", filesize);
-        fclose(fprt);
+        printf("Invalid file size: %ld\n", filesize); //Wrong file size calculation
+        fclose(filePointer); //Closes the file
         return 1;
     }
 
-    char *str = malloc(filesize + 1); // +1 para el terminador nulo
+    char *stringPointer = malloc(filesize + 1); // +1 for null terminator
 
-    if (str == NULL) {
+    if (stringPointer == NULL) {
         printf("malloc failed\n");
-        fclose(fprt);
+        fclose(filePointer); //Close file pointer
         return 1;
     }
 
-    // Leer el contenido del archivo
-    fread(str, 1, filesize, fprt);
-    str[filesize] = '\0'; // Terminador nulo para trabajar como string
+    // Read file content
+    fread(stringPointer, 1, filesize, filePointer);
+    stringPointer[filesize] = '\0'; // null terminator to work as a string
 
     //printf("File size: %ld\n", filesize);
     //printf("File contents:\n%s\n", str);
 
-    size_t sizearr = 10;
-    char *token = strtok(str," \t");
-    int *arr = malloc(sizeof(int) * filesize);
+    size_t sizeArray = 10;
+    char *token = strtok(stringPointer," \t"); //We use a tokenizer to separate de numbers from its space tab separators
+    int *Array = malloc(sizeof(int) * filesize); //Memory allocator to create the array with the size of the file size
 
-    if (arr == NULL)
+    if (Array == NULL)
     {
         printf("Failure to allocate memory\n");
-        fclose(fprt);
+        fclose(filePointer);
         return 1;
     }
 
-    size_t count = 0;
+    size_t count = 0; //Count to compare the filesize
 
 
     while (token != NULL)
     {
-        int num = atoi(token);
-        if (count >= sizearr)
+        if (count >= sizeArray) //realloc more space if there is no enough space
         {
-            sizearr *= 2;
-            int *temp = realloc(arr, sizearr * sizeof(int));
+            sizeArray *= 2;
+            int *temp = realloc(Array, sizeArray * sizeof(int));
             if (temp == NULL) {
                 printf("Memory reallocation failed\n");
-                free(arr);
+                free(Array);
                 return 1;
             }
-            arr = temp;
+            Array = temp;
         }
-        arr[count++] = atoi(token);
-        token = strtok(NULL, " \t");
+        Array[count++] = atoi(token); //Convert char numbers into int
+        token = strtok(NULL, " \t"); //iterate to next token
 
     }
 
- /* printf("\n");
-    for (size_t i = 0; i < count-1; i++) {
-        printf("%d\n", arr[i]);
-    }*/
+    float result = getAvg(Array, count-1); //Subtract the extra space generated
 
-    float res = getAvg(arr, count-1);
+    printf("%.2f", result);
 
-    printf("%.2f", res);
-
-    // Limpiar recursos
-    free(str);
-    fclose(fprt);
+    // clean allocated memory
+    free(stringPointer);
+    fclose(filePointer);
 
     return 0;
 }
