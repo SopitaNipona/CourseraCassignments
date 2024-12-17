@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/diego/Documentos/CForEveryone1/Elephants/ElephantC/cmake-build-debug",
-		"source" : "/home/diego/Documentos/CForEveryone1/Elephants/ElephantC"
+		"build" : "/home/diego/Documentos/Github/CourseraCassignments/Elephants/ElephantC/cmake-build-debug",
+		"source" : "/home/diego/Documentos/Github/CourseraCassignments/Elephants/ElephantC"
 	},
 	"version" : 
 	{

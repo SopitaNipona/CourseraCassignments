@@ -1,3 +1,3 @@
-/home/diego/Documentos/CForEveryone1/Elephants/ElephantC/cmake-build-debug/CMakeFiles/ElephantC.dir
-/home/diego/Documentos/CForEveryone1/Elephants/ElephantC/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/diego/Documentos/CForEveryone1/Elephants/ElephantC/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/diego/Documentos/Github/CourseraCassignments/Elephants/ElephantC/cmake-build-debug/CMakeFiles/ElephantC.dir
+/home/diego/Documentos/Github/CourseraCassignments/Elephants/ElephantC/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/diego/Documentos/Github/CourseraCassignments/Elephants/ElephantC/cmake-build-debug/CMakeFiles/rebuild_cache.dir
