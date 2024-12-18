@@ -36,8 +36,8 @@ date print_date(date *da)
 
 int main(void)
 {
+    date test;
 
 
-    printf("Hello, World!\n");
     return 0;
 }
