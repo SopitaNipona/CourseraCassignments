@@ -14,9 +14,13 @@ date next_day(date *da)
     month m = da->m;
 
     switch(m){
-    case m == feb && day == 28:
-        da -> d = 1;
-        da -> m = next_month(da -> m);
+    case (feb):
+        if (day == 28)
+        {
+            day = 1;
+            da -> d = 1;
+            da -> m = next_month(da -> m);
+        }
         break;
     default:
         da -> d++;
