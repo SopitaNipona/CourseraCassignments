@@ -153,16 +153,15 @@ void next_day(date *da)
 
 void print_date(date *da)
 {
-    int month = da -> m;
-    month++;
-    printf("%d/%d\n", da -> d, month);
+    const char* monthNames[] = {"January", "February", "March", "April", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+    printf("%d/%s\n", da -> d, monthNames[da -> m]);
 }
 
 int main(void)
 {
     date test;
-    test.m = feb;
-    test.d = 28;
+    test.m = dec;
+    test.d = 31;
     next_day(&test);
     print_date(&test);
 
