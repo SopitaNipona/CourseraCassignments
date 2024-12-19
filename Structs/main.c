@@ -8,16 +8,13 @@ month next_month(month m)
     return(m + 1) % 12;
 }
 
-date next_day(date *da)
+void next_day(date *da)
 {
-    int day = da->d;
-    month m = da->m;
 
-    switch(m){
+    switch(da -> m){
     case (feb):
-        if (day == 28)
+        if (da -> d == 28)
         {
-            day = 1;
             da -> d = 1;
             da -> m = next_month(da -> m);
         }
@@ -29,14 +26,20 @@ date next_day(date *da)
 
 }
 
-date print_date(date *da)
+void print_date(date *da)
 {
-    printf("%d/%d\n", da -> d, da -> m);
+    int month = da -> m;
+    month++;
+    printf("%d/%d\n", da -> d, month);
 }
 
 int main(void)
 {
     date test;
+    test.m = feb;
+    test.d = 28;
+    next_day(&test);
+    print_date(&test);
 
 
     return 0;
