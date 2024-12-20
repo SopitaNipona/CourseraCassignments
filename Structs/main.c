@@ -160,6 +160,18 @@ void print_date(date *da)
 int main(void)
 {
     date test;
+    test.m = feb;
+    test.d = 28;
+    next_day(&test);
+    print_date(&test);
+    test.m = mar;
+    test.d = 14;
+    next_day(&test);
+    print_date(&test);
+    test.m = oct;
+    test.d = 31;
+    next_day(&test);
+    print_date(&test);
     test.m = dec;
     test.d = 31;
     next_day(&test);
