@@ -15,6 +15,7 @@ typedef struct card
 
 typedef struct card_stack
 {
+    //error: flexible array member not at end of struct
     card *data[];
     int top;
 } card_stack;
