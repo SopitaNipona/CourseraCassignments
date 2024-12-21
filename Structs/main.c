@@ -1,16 +1,23 @@
 #include <stdio.h>
 
+//Enum and struct of month and date
+
 typedef enum month {jan, feb, mar, apr, may, jun, jul, agu, sep, oct, nov, dec} month;
 typedef struct date {month m; int d;} date;
+
+//Return the next month via enum
 
 month next_month(month m)
 {
     return(m + 1) % 12;
 }
 
+//Changes the date via pointer
+
 void next_day(date *da)
 {
 
+    //Switch statements to compare the end of each month
     switch(da -> m){
     case jan:
         if (da -> d == 31)
@@ -150,6 +157,8 @@ void next_day(date *da)
 
 
 }
+
+//Prints the name of the month with the enum month number
 
 void print_date(date *da)
 {
