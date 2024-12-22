@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #define MAX_LEN 1000
 #define EMPTY (-1)
 #define FULL (MAX_LEN - 1)
@@ -16,7 +15,8 @@ typedef struct card
 typedef struct card_stack
 {
     //error: flexible array member not at end of struct
-    card *data[];
+    //Fix with MAX_LEN
+    card *data[MAX_LEN];
     int top;
 } card_stack;
 
@@ -29,7 +29,10 @@ void push(card_stack *stk, card *c_push)
     stk -> data[stk -> top] = c_push;
 }
 
-void make_card(){}
+void make_card(card_value c_val,card_suit c_suit)
+{
+
+}
 
 int main(void)
 {
