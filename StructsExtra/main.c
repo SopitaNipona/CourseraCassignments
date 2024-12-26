@@ -45,7 +45,7 @@ card* make_card(card_value c_val,card_suit c_suit)
 
 void shuffle(card_stack *stk)
 {
-    size_t n = MAX_LEN;
+    size_t n = sizeof(stk -> data) / sizeof(stk -> data[0]);
     if (n > 1)
     {
         size_t i;
