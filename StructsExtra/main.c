@@ -74,6 +74,6 @@ int main(void)
     reset(&stack);
     add_cards_to_stack(&stack);
     printf("%d\n", stack.top);
-    printf("%d\n", stack.data[0] -> value);
+    printf("%d\n", stack.data[0] -> suit);
     return 0;
 }
