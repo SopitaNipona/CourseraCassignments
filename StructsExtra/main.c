@@ -72,15 +72,6 @@ int main(void)
 {
     card_stack stack;
     reset(&stack);
-    card *new_card1 = make_card(one, heart);
-    card *new_card2 = make_card(one, spade);
-    card *new_card3 = make_card(two, spade);
-    card *new_card4 = make_card(three, spade);
-    card *new_card5 = make_card(four, spade);
-    push(&stack, new_card1);
-    push(&stack, new_card2);
-    push(&stack, new_card3);
-    push(&stack, new_card4);
-    push(&stack, new_card5);
+    add_cards_to_stack(&stack);
     return 0;
 }
