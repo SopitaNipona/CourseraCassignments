@@ -59,6 +59,15 @@ void shuffle(card_stack *stk)
     }
 }
 
+void add_cards_to_stack(card_stack *stk) {
+    for (int i = 0; i <= 13; i++) {
+        push(stk, make_card(i, heart));
+        push(stk, make_card(i, diamonds));
+        push(stk, make_card(i, club));
+        push(stk, make_card(i, spade));
+    }
+}
+
 int main(void)
 {
     card_stack stack;
