@@ -78,9 +78,10 @@ void print_stack(card_stack *stk)
 
 void print_hand(card_stack *stk)
 {
+    printf("Value Suit\n");
     for (int i = stk->top; i > stk->top-7; i--)
     {
-        printf("%d %d \n",stk->data[i] -> value, stk->data[i] -> suit);
+        printf("%d  %d \n",stk->data[i] -> value, stk->data[i] -> suit);
     }
 }
 
