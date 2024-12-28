@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #define MAX_LEN 1000
 #define EMPTY (-1)
 #define FULL (MAX_LEN - 1)
 
-typedef enum card_value {ace, one, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king} card_value;
+typedef enum card_value {ace, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king} card_value;
 typedef enum card_suit {heart, diamonds, club, spade} card_suit;
 
 typedef struct card
@@ -41,12 +42,18 @@ card* make_card(card_value c_val,card_suit c_suit)
     return new_card;
 }
 
+void init_random_seed()
+{
+    srand((unsigned int)time(NULL));
+}
+
+
 void shuffle(card_stack *stk)
 {
     size_t n = stk->top;
     if (n > 1)
     {
-        for (size_t i = n - 1; i > 0; i--)
+        for (size_t i = n; i > 0; i--)
         {
             // Generate a random index between 0 and i (inclusive)
             size_t j = rand() % (i + 1);
@@ -60,7 +67,7 @@ void shuffle(card_stack *stk)
 }
 
 void add_cards_to_stack(card_stack *stk) {
-    for (int i = 0; i <= 13; i++) {
+    for (int i = 0; i <= 12; i++) {
         push(stk, make_card(i, heart));
         push(stk, make_card(i, diamonds));
         push(stk, make_card(i, club));
@@ -78,15 +85,19 @@ void print_stack(card_stack *stk)
 
 void print_hand(card_stack *stk)
 {
+    char *suit_print[] = {"Hearts", "Diamonds", "clubs", "Spades"};
+    char *value_print[] = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
     printf("Value Suit\n");
     for (int i = stk->top; i > stk->top-7; i--)
     {
-        printf("%d  %d \n",stk->data[i] -> value, stk->data[i] -> suit);
+        //printf("%d  %d \n",stk->data[i] -> value, stk->data[i] -> suit);
+        printf("%s %s\n", suit_print[stk->data[i] -> suit], value_print[stk->data[i] -> value]);
     }
 }
 
 int main(void)
 {
+    init_random_seed();
     card_stack stack;
     reset(&stack);
     add_cards_to_stack(&stack);
