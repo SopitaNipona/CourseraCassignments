@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #define MAX_LEN 1000
 #define EMPTY (-1)
 #define FULL (MAX_LEN - 1)
@@ -45,16 +46,18 @@ card* make_card(card_value c_val,card_suit c_suit)
 
 void shuffle(card_stack *stk)
 {
-    size_t n = sizeof(stk -> data) / sizeof(stk -> data[0]);
+    size_t n = stk->top;
     if (n > 1)
     {
-        size_t i;
-        for (i = 0; i < n - 1; i++)
+        for (size_t i = n - 1; i > 0; i--)
         {
-            size_t j = i + rand() / (RAND_MAX / (n - i) + 1);
-            card *t = stk -> data[j];
-            stk -> data[j] = stk -> data[i];
-            stk -> data[i] = t;
+            // Generate a random index between 0 and i (inclusive)
+            size_t j = rand() % (i + 1);
+
+            // Swap the cards at index i and j
+            card *temp_card = stk->data[i];
+            stk->data[i] = stk->data[j];
+            stk->data[j] = temp_card;
         }
     }
 }
@@ -74,6 +77,9 @@ int main(void)
     reset(&stack);
     add_cards_to_stack(&stack);
     printf("%d\n", stack.top);
-    printf("%d\n", stack.data[0] -> suit);
+    printf("%d\n", stack.data[5] -> suit);
+    shuffle(&stack);
+    printf("%d\n", stack.top);
+    printf("%d\n", stack.data[5] -> suit);
     return 0;
 }
