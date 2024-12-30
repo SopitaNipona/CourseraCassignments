@@ -77,9 +77,11 @@ void add_cards_to_stack(card_stack *stk) {
 
 void print_stack(card_stack *stk)
 {
+    char *suit_print[] = {"Hearts", "Diamonds", "clubs", "Spades"};
+    char *value_print[] = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
     for (int i = 0; i <= stk->top; i++)
     {
-        printf("%d %d \n",stk->data[i] -> value, stk->data[i] -> suit);
+        printf("%s %s\n", suit_print[stk->data[i] -> suit], value_print[stk->data[i] -> value]);
     }
 }
 
@@ -87,11 +89,22 @@ void print_hand(card_stack *stk)
 {
     char *suit_print[] = {"Hearts", "Diamonds", "clubs", "Spades"};
     char *value_print[] = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
-    printf("Value Suit\n");
     for (int i = stk->top; i > stk->top-7; i--)
     {
         //printf("%d  %d \n",stk->data[i] -> value, stk->data[i] -> suit);
         printf("%s %s\n", suit_print[stk->data[i] -> suit], value_print[stk->data[i] -> value]);
+    }
+}
+
+void determine_hand(card_stack *stk) {
+    int j = 0;
+    int heart = 0, diamonds = 0, club = 0, spade = 0;
+    card_value values[7];
+    int pairs = 0, threeOfAKind = 0, fourOfAKind = 0;
+    for (int i = stk->top; i > stk->top-7; i--)
+    {
+        values[j] = stk->data[i] -> value;
+        j++;
     }
 }
 
@@ -104,6 +117,7 @@ int main(void)
     //print_cards(&stack);
     shuffle(&stack);
     print_hand(&stack);
+    determine_hand(&stack);
     reset(&stack);
     return 0;
 }
