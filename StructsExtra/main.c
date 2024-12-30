@@ -8,18 +8,22 @@
 typedef enum card_value {ace, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king} card_value;
 typedef enum card_suit {heart, diamonds, club, spade} card_suit;
 
+//struct of a card
 typedef struct card
 {
     card_value value;
     card_suit suit;
 } card;
 
+//struct of a card stack
 typedef struct card_stack
 {
+    //made of an array made of card pointers
     card *data[MAX_LEN];
     int top;
 } card_stack;
 
+//Reset and delete stack
 void reset(card_stack *stk) {
     stk -> top = EMPTY;
     for (int i = 0; i < MAX_LEN; i++) {
@@ -27,6 +31,7 @@ void reset(card_stack *stk) {
     }
 }
 
+//Push card to stack with pointer
 void push(card_stack *stk, card *c_push)
 {
     stk -> top++;
@@ -34,20 +39,24 @@ void push(card_stack *stk, card *c_push)
     stk -> data[stk -> top] = c_push;
 }
 
+//Make card with the card struct
+//Returns a pointer the card created
 card* make_card(card_value c_val,card_suit c_suit)
 {
+    //new card with memory allocated
     card *new_card = malloc(sizeof(card));
     new_card -> value = c_val;
     new_card -> suit = c_suit;
     return new_card;
 }
 
+//Seed for improved randomness
 void init_random_seed()
 {
     srand((unsigned int)time(NULL));
 }
 
-
+//Shuffle the card stack
 void shuffle(card_stack *stk)
 {
     size_t n = stk->top;
@@ -66,6 +75,7 @@ void shuffle(card_stack *stk)
     }
 }
 
+//Creates a stack of cards before shuffle
 void add_cards_to_stack(card_stack *stk) {
     for (int i = 0; i <= 12; i++) {
         push(stk, make_card(i, heart));
@@ -96,22 +106,26 @@ void print_hand(card_stack *stk)
     }
 }
 
+//Determines the hand in the first 7 cards on top of the stack
 void determine_hand(card_stack *stk) {
     int j = 0;
     int x_times_values[13] = {0};
     card_value values[7] = {0};
     int pairs = 0, three_of_a_Kind = 0, four_of_a_kind = 0, full_house = 0;
 
+    //Extracts the value of the 7 cards to an array
     for (int i = stk->top; i > stk->top - 7 && i >= 0; i--) {
         values[j] = stk->data[i]->value;
         j++;
     }
 
     for (size_t i = 0; i < 7; i++) {
+        //counts the numbers of times a value is repeated
         x_times_values[values[i]]++;
     }
 
     for (size_t i = 0; i < 13; i++) {
+        //counts the repetitions of formations
         switch (x_times_values[i]) {
         case 2:
             pairs++;
@@ -125,10 +139,12 @@ void determine_hand(card_stack *stk) {
         }
     }
 
+    //Identifies a full house
     if (pairs >= 1 && three_of_a_Kind >= 1) {
         full_house = 1;
     }
 
+    //prints the formation
     if (full_house > 0) {
         printf("full house!!!\n");
     } else if (four_of_a_kind > 0) {
