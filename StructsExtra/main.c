@@ -98,13 +98,47 @@ void print_hand(card_stack *stk)
 
 void determine_hand(card_stack *stk) {
     int j = 0;
-    int heart = 0, diamonds = 0, club = 0, spade = 0;
-    card_value values[7];
-    int pairs = 0, threeOfAKind = 0, fourOfAKind = 0;
-    for (int i = stk->top; i > stk->top-7; i--)
-    {
-        values[j] = stk->data[i] -> value;
+    int x_times_values[13] = {0};
+    card_value values[7] = {0};
+    int pairs = 0, three_of_a_Kind = 0, four_of_a_kind = 0, full_house = 0;
+
+    for (int i = stk->top; i > stk->top - 7 && i >= 0; i--) {
+        values[j] = stk->data[i]->value;
         j++;
+    }
+
+    for (size_t i = 0; i < 7; i++) {
+        x_times_values[values[i]]++;
+    }
+
+    for (size_t i = 0; i < 13; i++) {
+        switch (x_times_values[i]) {
+        case 2:
+            pairs++;
+            break;
+        case 3:
+            three_of_a_Kind++;
+            break;
+        case 4:
+            four_of_a_kind++;
+            break;
+        }
+    }
+
+    if (pairs >= 1 && three_of_a_Kind >= 1) {
+        full_house = 1;
+    }
+
+    if (full_house > 0) {
+        printf("full house!!!\n");
+    } else if (four_of_a_kind > 0) {
+        printf("four of a kind!!!\n");
+    } else if (three_of_a_Kind > 0) {
+        printf("three of a kind!!!\n");
+    } else if (pairs > 0) {
+        printf("pairs!!!\n");
+    } else {
+        printf("no formation\n");
     }
 }
 
