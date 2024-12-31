@@ -27,7 +27,7 @@ typedef struct card_stack
 void reset(card_stack *stk) {
     stk -> top = EMPTY;
     for (int i = 0; i < MAX_LEN; i++) {
-        stk->data[i] = nullptr;
+        stk->data[i] = EMPTY;
     }
 }
 
