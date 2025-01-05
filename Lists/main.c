@@ -44,8 +44,9 @@ void print_list(list *h, char *title)
 	printf("%s\n", title);
 	while(h != NULL){
 		printf("%d", h -> data);
-		h -> next;
+		h = h -> next;
 	}
+	printf("\n");
 }
 
 void concat(list *h1, list *h2)
@@ -65,8 +66,47 @@ void insert(list *p1, list *p2, list *q)
 	q -> next = p2;
 }
 
+void swap_int_data(list *h1, list *h2)
+{
+	int temp = 0;
+	temp = h1 -> data;
+	h1 -> data = h2 -> data;
+	h2 -> data = temp;
+}
+
+void bubble_sort(list *h)
+{
+	list *h_copy = h;
+	int changed
+	/*
+	do{	 
+		if (h -> data > h -> next -> data)
+		{
+			swap_int_data(h, h -> next);
+			h = h -> next;
+			changes++ ;
+		}
+		if (h -> next == NULL && changes != 0){
+			h = h_copy;
+			changes++;
+		}
+		else {
+			h = h -> next;
+		}
+	}
+	while (h -> next != NULL && changes != 0);
+	*/
+}
+
 int main(void)
 {
-    printf("Hello, World!\n");
+    int array[] = {5,1,6,7,3,6};
+    head = array_to_list(array, 6);
+    //printf("%d\n", head -> data);
+    //print_list(head, "god help me\n");
+    print_list(head, "array to list\n");
+    //printf("%d\n", head -> data);
+    bubble_sort(head);
+    print_list(head, "sorted with bubble sort");
     return 0;
 }
