@@ -43,7 +43,7 @@ void print_list(list *h, char *title)
 {
 	printf("%s\n", title);
 	while(h != NULL){
-		printf("%d", h -> data);
+		printf("%d ", h -> data);
 		h = h -> next;
 	}
 	printf("\n");
@@ -77,34 +77,39 @@ void swap_int_data(list *h1, list *h2)
 void bubble_sort(list *h)
 {
 	list *h_copy = h;
-	int changed
-	/*
-	do{	 
-		if (h -> data > h -> next -> data)
-		{
-			swap_int_data(h, h -> next);
-			h = h -> next;
-			changes++ ;
+	int changed;
+	if (!h) return; // If the list is empty, do nothing
+
+	int swapped;
+	list *current;
+
+	do {
+		swapped = 0;  // Reset swap flag
+		current = h;
+
+		while (current->next != NULL) {
+			if (current->data > current->next->data) {
+				swap_int_data(current, current->next);
+				swapped = 1;  // Indicate a swap occurred
+			}
+			current = current->next;
 		}
-		if (h -> next == NULL && changes != 0){
-			h = h_copy;
-			changes++;
-		}
-		else {
-			h = h -> next;
-		}
-	}
-	while (h -> next != NULL && changes != 0);
-	*/
+	} while (swapped);
 }
 
 int main(void)
 {
-    int array[] = {5,1,6,7,3,6};
-    head = array_to_list(array, 6);
+    //int array[] = {5,1,6,7,3,6};
+	int random_array[100];
+	srand(0);
+	int i;
+	for (i = 0; i < 100; i++) {
+		random_array[i] = rand() % (65 + 1 - 0) + 0;
+	}
+    head = array_to_list(random_array, 100);
     //printf("%d\n", head -> data);
     //print_list(head, "god help me\n");
-    print_list(head, "array to list\n");
+    print_list(head, "array to list");
     //printf("%d\n", head -> data);
     bubble_sort(head);
     print_list(head, "sorted with bubble sort");
