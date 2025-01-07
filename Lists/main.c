@@ -2,32 +2,40 @@
 #include <stdlib.h>
 #include <assert.h>
 
+//single linked list
 struct list
 {
     int data;
     struct list *next;
 };
 
+//define list as a type
 typedef struct list list;
 
+//init variables with null value
 list *head = NULL;
 list *tail = NULL;
 
+//Creates the first node and assigns memory on the heap
 list *create_list(int d)
 {
     list* head = malloc(sizeof(list));
     head->data = d;
     head->next = NULL;
+	//Returns a pointer of list type
     return head;
 }
 
+//adds to front of the head
 list *add_to_front(int d, list *h)
 {
     list *head = create_list(d);
     head->next = h;
+	//Returns a pointer of list type
     return head;
 }
 
+//gets the size and array to iterate and create more nodes with the information
 list *array_to_list(int d[], int size)
 {
 	list *head = create_list(d[0]);
@@ -36,16 +44,20 @@ list *array_to_list(int d[], int size)
 	{
 		head = add_to_front(d[i], head);
 	}
+	//Returns a pointer of list type
 	return head;
 }
 
+//gets the list by reference and the title in a string
 void print_list(list *h, char *title)
 {
 	int count = 0;
 	printf("%s\n", title);
+	//iterates to the next node and prints the data
 	while(h != NULL){
 		count++;
 		printf("%d ", h -> data);
+		//makes a new line after 5 printed numbers
 		if (count == 5)
 		{
 			printf("\n");
@@ -56,6 +68,7 @@ void print_list(list *h, char *title)
 	printf("\n");
 }
 
+//Not used in current excersise
 void concat(list *h1, list *h2)
 {
 	assert(h1 != NULL);
@@ -66,6 +79,7 @@ void concat(list *h1, list *h2)
 	}
 }
 
+//Not used in current excersise
 void insert(list *p1, list *p2, list *q)
 {
 	assert(p1 -> next == p2);
@@ -73,34 +87,40 @@ void insert(list *p1, list *p2, list *q)
 	q -> next = p2;
 }
 
+//Changes the value of the list by reference
 void swap_int_data(list *h1, list *h2)
 {
+	//Changes the in value of the lists
 	int temp = 0;
 	temp = h1 -> data;
 	h1 -> data = h2 -> data;
 	h2 -> data = temp;
 }
 
+//Changes the list by reference pointer
 void bubble_sort(list *h)
 {
-	list *h_copy = h;
-	int changed;
 	if (!h) return; // If the list is empty, do nothing
 
 	int swapped;
 	list *current;
 
+	//Executes do first to raise the Swap flag
 	do {
 		swapped = 0;  // Reset swap flag
 		current = h;
 
+		//checks if the next node isnt null
 		while (current->next != NULL) {
+			//compares the value of the next node with the current one
 			if (current->data > current->next->data) {
 				swap_int_data(current, current->next);
 				swapped = 1;  // Indicate a swap occurred
 			}
+			//Skips to the next one if the value in the current node isn't greater than the next node
 			current = current->next;
 		}
+		//while swapped is true
 	} while (swapped);
 }
 
