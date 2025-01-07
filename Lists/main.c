@@ -41,9 +41,16 @@ list *array_to_list(int d[], int size)
 
 void print_list(list *h, char *title)
 {
+	int count = 0;
 	printf("%s\n", title);
 	while(h != NULL){
+		count++;
 		printf("%d ", h -> data);
+		if (count == 5)
+		{
+			printf("\n");
+			count = 0;
+		}
 		h = h -> next;
 	}
 	printf("\n");
@@ -104,13 +111,11 @@ int main(void)
 	srand(0);
 	int i;
 	for (i = 0; i < 100; i++) {
-		random_array[i] = rand() % (65 + 1 - 0) + 0;
+		//stablishes a range in the random generated numbers from 0 to 100
+		random_array[i] = rand() % (100 + 1 - 0) + 0;
 	}
     head = array_to_list(random_array, 100);
-    //printf("%d\n", head -> data);
-    //print_list(head, "god help me\n");
-    print_list(head, "array to list");
-    //printf("%d\n", head -> data);
+    print_list(head, "random array to list");
     bubble_sort(head);
     print_list(head, "sorted with bubble sort");
     return 0;
