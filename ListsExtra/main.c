@@ -140,7 +140,7 @@ int main(void)
 	}
     head = array_to_list(random_array, 100);
     print_list(head, "random array to list");
-    //bubble_sort(head);
-    //print_list(head, "sorted with bubble sort");
+    bubble_sort(head);
+    print_list(head, "sorted with bubble sort");
     return 0;
 }
