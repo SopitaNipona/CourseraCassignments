@@ -33,7 +33,7 @@ list *create_list(int d)
 list *add_to_front(int d, list *h)
 {
 	list *head = create_list(d);
-	head->next = h;
+	head -> next = h;
 	h -> prev = head;
 	//Returns a pointer of list type
 	return head;
@@ -142,5 +142,6 @@ int main(void)
     print_list(head, "random array to list");
     bubble_sort(head);
     print_list(head, "sorted with bubble sort");
+	printf("%d %d %d %d", head -> data, head -> next -> data, head -> next -> next -> data, head -> next -> next -> prev -> data);
     return 0;
 }
