@@ -128,6 +128,19 @@ void bubble_sort(list *h)
 	} while (swapped);
 }
 
+void eliminate_duplicates_ordered(list *h)
+{
+	while (h -> next != NULL)
+	{
+		if (h -> data == h -> next->data)
+		{
+			h -> next -> prev = h -> prev;
+			h -> prev -> next = h -> next;
+		}
+		h = h -> next;
+	}
+}
+
 int main(void)
 {
     //int array[] = {5,1,6,7,3,6};
@@ -141,7 +154,7 @@ int main(void)
     head = array_to_list(random_array, 100);
     print_list(head, "random array to list");
     bubble_sort(head);
+	eliminate_duplicates_ordered(head);
     print_list(head, "sorted with bubble sort");
-	printf("%d %d %d %d", head -> data, head -> next -> data, head -> next -> next -> data, head -> next -> next -> prev -> data);
     return 0;
 }
