@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <assert.h>
 
-//double linked list
+//double linked list with prev pointer
 struct list
 {
     int data;
