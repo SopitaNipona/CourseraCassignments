@@ -130,13 +130,17 @@ void bubble_sort(list *h)
 
 void eliminate_duplicates_ordered(list *h)
 {
+	//Loops through the entire list
 	while (h -> next != NULL)
 	{
-		if (h -> data == h -> next->data)
+		//if current value is equal to next one and prev or next isnt null
+		if (h -> data == h -> next->data && h -> next != NULL && h -> prev != NULL)
 		{
+			//unlink the node from the neighbor nodes
 			h -> next -> prev = h -> prev;
 			h -> prev -> next = h -> next;
 		}
+		//continues iteration
 		h = h -> next;
 	}
 }
@@ -144,14 +148,14 @@ void eliminate_duplicates_ordered(list *h)
 int main(void)
 {
     //int array[] = {5,1,6,7,3,6};
-	int random_array[100];
+	int random_array[200];
 	srand(0);
 	int i;
-	for (i = 0; i < 100; i++) {
-		//stablishes a range in the random generated numbers from 0 to 100
-		random_array[i] = rand() % (100 + 1 - 0) + 0;
+	for (i = 0; i < 200; i++) {
+		//stablishes a range in the random generated numbers from 0 to 49
+		random_array[i] = rand() % (49 + 1 - 0) + 0;
 	}
-    head = array_to_list(random_array, 100);
+    head = array_to_list(random_array, 200);
     print_list(head, "random array to list");
     bubble_sort(head);
 	eliminate_duplicates_ordered(head);
