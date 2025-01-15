@@ -21,6 +21,11 @@
 		{
 			"isCMake" : true,
 			"isExternal" : true,
+			"path" : "/home/diego/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeUnixFindMake.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
 			"path" : "/home/diego/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake"
 		},
 		{
@@ -425,8 +430,8 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "/home/diego/Documentos/Github/CourseraCassignments/FilesIO/cmake-build-debug",
-		"source" : "/home/diego/Documentos/Github/CourseraCassignments/FilesIO"
+		"build" : "/home/diego/Documentos/CForEveryone1/FilesIO/cmake-build-debug",
+		"source" : "/home/diego/Documentos/CForEveryone1/FilesIO"
 	},
 	"version" : 
 	{

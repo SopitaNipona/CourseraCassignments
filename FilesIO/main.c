@@ -1,7 +1,5 @@
 #include <stdio.h>
-
-
-FILE *fptr = fopen("test.txt", "r");
+#include <stdlib.h>
 
 void print_file(FILE *fptr)
 {
@@ -15,6 +13,7 @@ void print_file(FILE *fptr)
 
 int main(void)
 {
+    FILE *fptr = fopen("./Temporary/test.txt", "r");
     printf("Hello, World!\n");
     return 0;
 }
