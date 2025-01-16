@@ -10,6 +10,11 @@ void print_file(FILE *fptr)
     }
 }
 
+void generate_array(FILE *fptr)
+{
+    fscanf(fptr, "%d", );
+}
+
 int main(void)
 {
     FILE *fptr = fopen("test.txt", "r");
