@@ -1,26 +1,35 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static int idk = 0;
-
 void print_file(FILE *fptr)
 {
     int c;
     rewind(fptr);
     while ((c = getc(fptr)) != EOF)
     {
-        putc(c, stdout);
+        putc(c, fptr);
     }
 }
 
-void generate_array(FILE *fptr)
+int *generate_array(FILE *fptr)
 {
-    fscanf(fptr, "%d", &idk);
+
+    int size = 0;
+    fscanf(fptr, "%d", &size);
+    int *array = malloc(size * sizeof(int));
+    for (int i = 0; i < size; i++) {
+        fscanf(fptr, "%d", array[i]);
+    }
+
+    return array;
 }
 
 int main(void)
 {
     FILE *fptr = fopen("test.txt", "r");
-    print_file(fptr);
+    int *array = generate_array(fptr);
+    for(int i = 0; i < (sizeof(array)/sizeof(int)); i++)
+        printf("%d ", array[i]);
+    free(array);
     return 0;
 }
