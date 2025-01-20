@@ -11,6 +11,7 @@ void print_file(FILE *fptr)
     }
 }
 
+
 int *generate_array(FILE *fptr)
 {
 
