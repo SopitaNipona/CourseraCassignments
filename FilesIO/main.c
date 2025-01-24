@@ -90,14 +90,30 @@ void print_array(int *array, int size)
     }
 }
 
+void print_to_file(FILE *fptr, int *array, int size, double average, int max_element)
+{
+    for (int i = 0; i < size; i++)
+    {
+        fprintf(fptr, "%d ",array[i]);
+    }
+    fprintf(fptr, "\n");
+    fprintf(fptr, "Average: %lf\n", average);
+    fprintf(fptr, "Max element: %d\n", max_element);
+}
+
 int main(void)
 {
+    //input test.txt     output answer-hw3.txt
     FILE *fptr = fopen("test.txt", "r");
+    FILE *fptr2 = fopen("answer-hw3.txt", "w");
     int *array = generate_array(fptr);
     print_array(array, current_size);
     printf("\n");
-    printf("%f\n", average(array, current_size));
-    printf("%d\n", max_element(array, current_size));
+    double result_avgr = average(array, current_size);
+    int res_max_element = max_element(array, current_size);
+    printf("%f\n", result_avgr);
+    printf("%d\n", res_max_element);
+    print_to_file(fptr2, array, current_size, result_avgr, res_max_element);
     free(array);
     fclose(fptr);
     return 0;

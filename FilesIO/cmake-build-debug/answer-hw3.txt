@@ -1,0 +1,3 @@
+9 11 12 15 
+Average: 11.750000
+Max element: 15
