@@ -2,6 +2,53 @@
 #include <stdlib.h>
 #include <string.h>
 
+struct node
+{
+    int d;
+    struct node *left;
+    struct node *right;
+};
+
+typedef struct node NODE;
+typedef NODE *BTREE;
+
+void inorder(BTREE root)
+{
+    if (root != NULL)
+    {
+        inorder(root->left);
+        printf("%d ", root->d);
+        inorder(root->right);
+    }
+}
+
+BTREE new_node()
+{
+    return malloc(sizeof(BTREE));
+}
+
+BTREE init_node(int d1, BTREE p1, BTREE p2)
+{
+    BTREE t;
+    t = new_node();
+    t -> d = d1;
+    t -> left = p1;
+    t -> right = p2;
+
+    return t;
+}
+
+BTREE create_tree(int a[], int i, int size)
+{
+    if (i >= size)
+    {
+        return NULL;
+    } else
+    {
+        return (init_node(a[i], create_tree(a, 2 * i + 1, size), create_tree(a, 2 * i + 1, size)));
+    }
+}
+
 //Modified size global valued after running function generate_array
 int current_size = 0;
 
@@ -89,7 +136,7 @@ void print_array(const int *array, int size)
         printf("%d ", array[i]);
     }
 }
-
+/*
 void print_to_file(FILE *fptr, const int *array, int size, double average, int max_element)
 {
     for (int i = 0; i < size; i++)
@@ -99,7 +146,7 @@ void print_to_file(FILE *fptr, const int *array, int size, double average, int m
     fprintf(fptr, "\n");
     fprintf(fptr, "Average: %lf\n", average);
     fprintf(fptr, "Max element: %d\n", max_element);
-}
+}*/
 
 int main(void)
 {
