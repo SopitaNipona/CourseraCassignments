@@ -49,6 +49,15 @@ BTREE create_tree(int a[], int i, int size)
     }
 }
 
+void inordertree_insert(int *array,int size) {
+    if (size == 0) {
+
+    }
+    for (int i = 0; i <= size;i++) {
+
+    }
+}
+
 //Modified size global valued after running function generate_array
 int current_size = 0;
 
@@ -155,6 +164,7 @@ int main(void)
     int *array = generate_array(fptr);
     print_array(array, current_size);
     printf("\n");
+    inordertree_insert(array, current_size);
     //double result_avgr = average(array, current_size);
     //int res_max_element = max_element(array, current_size);
     //printf("%f\n", result_avgr);
